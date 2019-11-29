@@ -1,0 +1,31 @@
+.container {
+    width: 500px;
+    height: 100%;
+    padding: 0;
+}
+
+form {
+    margin: 0 auto;
+}
+
+fieldset {
+    text-align: center;
+}
+
+button {
+    color: white;
+    font-size: 15px;
+}
+
+label, input {
+    font-size: 15px;
+}
+
+.invalid-feedback {
+    color: red;
+}
+
+.tooltip-color {
+    font-size: 12px;
+    background: rgba(34, 34, 43, .9);
+}

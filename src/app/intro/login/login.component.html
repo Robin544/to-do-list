@@ -1,0 +1,113 @@
+<div class="container">
+    <form 
+    class="well form-horizontal"
+    #f="ngForm"
+    (ngSubmit)="f.form.valid && onLogin(f)">
+        <div style="float: right;"><a (click)="closeDialog()"><i class="fa fa-times" aria-hidden="true" style="font-size: 25px; height: 25px; width: 25px; margin: 0 auto; padding: 0;"></i></a></div>
+
+        <fieldset>
+    
+            <legend><h2><b>Sign In</b></h2></legend>
+
+            <h4 style="color: red;">{{ errorMessage }}</h4>
+    
+            <div class="form-group">
+                <label class="col-md-3 control-label">E-Mail</label>  
+                <div class="col-md-9 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input 
+                        name="email" 
+                        placeholder="E-Mail Address" 
+                        class="form-control"
+                        type="text"
+                        #email="ngModel"
+                        [(ngModel)]="get_selected_user[0]"
+                        [ngClass]="{'is-invalid': f.submitted && email.invalid}"
+                        required email>
+                    </div>
+                </div>
+                <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                    <div *ngIf="email.errors.required">
+                        *This field is mandatory.*
+                    </div>
+                    <div *ngIf="email.errors.email">
+                        *Enter valid email-address.* 
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-3 control-label" >Password</label> 
+                <div class="col-md-9 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input 
+                        name="password" 
+                        placeholder="Password" 
+                        class="form-control"
+                        [type]="showPassword ? 'text' : 'password'"
+                        #password="ngModel"
+                        [(ngModel)]="get_selected_user[1]"
+                        [ngClass]="{'is-invalid': f.submitted && password.invalid}"
+                        required
+                        minlength="6">
+                    </div>
+                    <input 
+                    type="checkbox" 
+                    id="togglePassword" 
+                    style="float: left; margin-right: 3px;"
+                    (click)="show_Password()">
+                    <label for="togglePassword" style="float: left;"><small>Show Password</small></label> 
+                </div>
+                <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                    <div *ngIf="password.errors.required">
+                        *This field is mandatory.*
+                    </div>
+                    <div *ngIf="password.errors.minlength">
+                        *Enter atleast 6 characters.*
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    <button 
+                    type="submit" 
+                    class="btn btn-primary"
+                    matTooltip="Click to SignIn"
+                    matTooltipClass="tooltip-color">Sign In <span class="glyphicon glyphicon-log-in"></span></button>
+                </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <a 
+                (click)="openForgotPasswordDialog()"
+                matTooltip="Forgot Password"
+                matTooltipClass="tooltip-color">Forgot Password ?</a>
+            </div>
+            <legend></legend>
+            <a 
+            (click)="onLoginFacebook()" 
+            class="fa fa-facebook" 
+            matTooltip="Login with Facebook"
+            matTooltipClass="tooltip-color"></a>
+            <a 
+            (click)="onLoginTwitter()" 
+            class="fa fa-twitter"
+            matTooltip="Login with Twitter"
+            matTooltipClass="tooltip-color"></a>
+            <a 
+            (click)="onLoginGoogle()" 
+            class="fa fa-google"
+            matTooltip="Login with Google"
+            matTooltipClass="tooltip-color"></a>
+            <a 
+            (click)="onLoginLinkedin()" 
+            class="fa fa-linkedin"
+            matTooltip="Login with LinkedIn"
+            matTooltipClass="tooltip-color"></a>
+        </fieldset>
+    </form>
+</div>
+    

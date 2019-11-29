@@ -1,0 +1,106 @@
+<div class="container">
+    <form 
+    class="well form-horizontal"
+    #f="ngForm"
+    (ngSubmit)="f.form.valid && onSubmit(f)">
+        <div style="float: right;"><a (click)="closeDialog()" style="padding: 0;"><i class="fa fa-times" aria-hidden="true" style="font-size: 26px; padding: 0; outline: none;"></i></a></div>
+        <fieldset>
+            <legend style="margin-bottom: 10px;"><h2><b>Add New Task</b></h2></legend><br>
+            <mat-form-field class="form-field">
+                <input 
+                matInput 
+                type="text"
+                name="taskName"
+                #taskName="ngModel"
+                placeholder="Task Name"
+                [(ngModel)]="todolistService.newTask.taskName"
+                [ngClass]="{'is-invalid': f.submitted && taskName.invalid}"
+                required>
+            </mat-form-field>
+            <div *ngIf="f.submitted && taskName.invalid" class="invalid-feedback">
+                <div *ngIf="taskName.errors.required">
+                    *This field is mandatory.*
+                </div>
+            </div>
+            <br>
+    
+            <mat-form-field class="form-field">
+                <mat-label>Priority</mat-label>
+                <mat-select 
+                name="priority" 
+                #priority="ngModel" 
+                [(ngModel)]="todolistService.newTask.priority">
+                    <mat-option value="Very Important" style="color: red; opacity: .9;"><b>Very Important</b></mat-option>
+                    <mat-option value="Important" style="color: green; opacity: .9;"><b>Important</b></mat-option>
+                    <mat-option value="Not Important" style="color: blue; opacity: .9;"><b>Not Important</b></mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field class="inputTime">
+                <input 
+                matInput 
+                type="number"
+                name="completionTime"
+                placeholder="Completion Time"
+                #completionTime="ngModel" 
+                [(ngModel)]="todolistService.newTask.completionTime"
+                [ngClass]="{'is-invalid': f.submitted && completionTime.invalid}"
+                required
+                max="60"
+                min="1" oninput="validity.valid||(value='');">
+            </mat-form-field>
+            <div *ngIf="f.submitted && completionTime.invalid" class="invalid-feedback inputTime">
+                <div *ngIf="completionTime.errors.required">
+                    *This field is mandatory.*
+                </div>
+            </div>
+            
+            <mat-form-field class="selectTime">
+                <mat-label>Time In</mat-label>
+                <mat-select 
+                name="timeType"
+                #timeType="ngModel" 
+                [(ngModel)]="todolistService.newTask.timeType"
+                [ngClass]="{'is-invalid': f.submitted && timeType.invalid}"
+                required>
+                    <mat-option value="minutes">Minutes</mat-option>
+                    <mat-option value="hours">Hours</mat-option>
+                    <!-- <mat-option value="days">Days</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="f.submitted && timeType.invalid" class="invalid-feedback selectTime">
+                <div *ngIf="timeType.errors.required">
+                    *This field is mandatory.*
+                </div>
+            </div>
+            <br>
+
+            <mat-form-field class="form-field">
+                <textarea 
+                matInput 
+                name="taskNote"
+                #taskNote="ngModel"
+                placeholder="Task Note"
+                [(ngModel)]="todolistService.newTask.taskNote"
+                [ngClass]="{'is-invalid': f.submitted && taskNote.invalid}"
+                required></textarea>
+            </mat-form-field>
+            <div *ngIf="f.submitted && taskNote.invalid" class="invalid-feedback">
+                <div *ngIf="taskNote.errors.required">
+                    *This field is mandatory.*
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="example-button-row col text-center">
+                <button 
+                type="submit"
+                mat-raised-button 
+                color="primary"
+                matTooltip="Click to Add"
+                matTooltipClass="tooltip-color">Add <i class="fa fa-check-square-o" style="font-size: 20px; margin-left: 8px;"></i></button>
+            </div>
+        </fieldset>
+    </form>
+</div>

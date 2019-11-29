@@ -1,0 +1,19 @@
+<div style="height: 100%; width: 350px; padding: 10px;">
+    <h2 style="margin-top: 10px; margin-bottom: 20px; color: red;">Please Confirm...</h2>
+    <h4 class="col text-center">Do you really want to delete ?</h4>
+    
+    <br>
+    <br>
+    <div style="float: right; padding-bottom: 10px;">
+        <button 
+        mat-raised-button 
+        color="warn" 
+        (click)="deleteTask()" 
+        style="color: white;">Delete</button>&nbsp;&nbsp;
+        <button 
+        mat-raised-button 
+        (click)="closeDialog()"
+        style="background-color: whitesmoke;">Cancel</button>
+    </div>
+    <br>
+</div>

@@ -1,0 +1,92 @@
+<nav class="navbar">
+    <button 
+    class="btn btn-primary" 
+    (click)="addTask()" 
+    style="float: left !important"
+    matTooltip="Add New Task"
+    matTooltipClass="tooltip-color">New Task</button>
+    <div class="dropdown" style="float: right;">
+        <a class="dropbtn">Hi, there <span class="caret"></span></a>
+        <div class="dropdown-content">
+            <a (click)="openMyProfileDialog()">My Profile <span class="glyphicon glyphicon-user" style="color: blue; margin-left: 10px;"></span></a>
+            <a (click)="openConfirmLogout()">Sign Out <span class="glyphicon glyphicon-log-out" style="color: blue; margin-left: 10px;"></span></a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="row col text-center">
+        <input type="text" class="form-control searchClass" placeholder="Type to search..." name="search" [(ngModel)]="filter"/>
+    </div>
+    <div *ngFor="let task of all_todolist| filter: filter | paginate: {itemsPerPage: 6 , currentPage: p,totalItems:all_todolist.length}; let taskIndex=index" style="display: inline-flex; margin-top: 20px;">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-card class="example-card">
+          
+            <mat-card-header>
+              <div mat-card-avatar style="height: 0; width: 5px;">{{ taskIndex +1 }}.</div>
+              <mat-card-title>
+                {{ task.taskName }}
+                &nbsp;<a  
+                color="primary"
+                (click)="openEditTaskDialog(task._id)">
+                <span 
+                class="glyphicon glyphicon-edit" 
+                matTooltip="Edit Task"  
+                matTooltipClass="tooltip-color" 
+                style="font-size: 20px"></span></a>
+              </mat-card-title>
+              <mat-card-subtitle>{{ task.priority }}</mat-card-subtitle>
+            </mat-card-header>
+            <div *ngIf="task.status == 'Not Activated'">
+                <p style=" text-align: center; font-size: 40px; border: 1px solid wheat;">{{task.hours}}h: {{task.minutes}}m: {{task.seconds}}s</p>
+            </div>
+            
+            <div *ngIf="task.status == 'Activated'">
+              <p style=" text-align: center; font-size: 40px; border: 1px solid wheat;">{{hourtimeLeft}}h: {{minutetimeLeft}}m: {{secondtimeLeft}}s</p>
+            </div>
+            <div *ngIf="task.status == 'Paused'">
+              <p style=" text-align: center; font-size: 40px; border: 1px solid wheat;">{{task.hours}}h: {{task.minutes}}m: {{task.seconds}}s</p>
+            </div>
+            
+            <mat-card-content style="height: 70px; overflow: auto">
+              <p>
+                {{ task.taskNote }}
+              </p>
+            </mat-card-content>
+            <mat-card-actions class="col text-center">
+              <div *ngFor= "let id of notActivatedId">
+                <div *ngIf="task._id == id">
+                <button 
+                mat-raised-button 
+                color="primary" 
+                type="button" 
+                (click)="taskInfo(task._id, task.status)">Activate Task</button>
+              </div>
+            </div>
+            <div *ngFor= "let id of activatedId">
+             <div *ngIf="task._id == id">
+                <button mat-raised-button color="primary" type="button" (click)="pauseTask(id)">Pause Task</button>
+                <button mat-raised-button color="primary" type="button" (click)="endTask(id)" >End Task</button>
+              </div>
+            </div>
+            <div *ngFor= "let id of pausedId">
+              <div *ngIf="task._id == id">
+               <button mat-raised-button color="primary" type="button" (click)="taskInfo(task._id, task.status)">Resume Task</button>
+               <button mat-raised-button color="primary" type="button" (click)="endTask(id)" >End Task</button>
+              </div>
+            </div>
+            <div *ngFor= "let id of endedId">
+                <div *ngIf="task._id == id">
+                 <button mat-raised-button color="primary" type="button" (click)="deleteTask(task._id)">Delete Task</button>
+                </div>
+            </div>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+    <br>
+    <footer>
+      <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </footer>
+    <br>
+</div>

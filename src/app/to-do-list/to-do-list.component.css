@@ -1,0 +1,115 @@
+nav {
+    background-color: blue;
+    margin: 0 auto;
+    border-radius: 0;
+}
+
+.dropbtn {
+    text-decoration: none;
+    color: white;
+    padding: 16px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 40px;
+}
+  
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 20px;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-size: 15px;
+    border-radius: 5px;
+}
+  
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 5px;
+}
+
+.btn {
+    margin-top: 6px;
+    margin-left: 20px;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 20px;
+    background-color: skyblue;
+    color: black;
+    outline: none;
+    border: none;
+}
+
+.btn:hover {
+    font-size: 16px;
+}
+
+.btn:active {
+    outline: none;
+    border: none;
+}
+
+.dropdown-content a:hover { background-color: skyblue; }
+.dropdown:hover .dropdown-content { display: block; }
+
+.container {
+    padding: 0;
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    /* margin-left: 10px;
+    margin-right: 10px; */
+}
+
+/* .countdown {
+    height: 100%;
+    width: 400px;
+} */
+
+.example-card {
+    max-width: 380px;
+    min-width: 380px;
+    background-color: whitesmoke;
+    border: solid darkslategrey 1px ;
+    border-radius: 25px;
+    box-shadow: darkslategrey;
+}
+
+.row {
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: 135px;    /* margin-right: 0px; */
+}
+
+.searchClass {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+footer {
+    margin-top: 15px;
+    text-align: right;
+}  
+  
+.tooltip-color {
+    font-size: 12px;
+    background: rgba(34, 34, 43, .9);
+}
